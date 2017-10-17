@@ -1,8 +1,64 @@
 <div class="clear-both"></div>
 <div class="container">
   <form action="" [formGroup]="registrationForm" (ngSubmit)="addMember(registrationForm.value)">
-    <div class="first-section row">
-      <div class="col-md-12"><h3>Basic Details</h3></div>
+    <div class="first-section row" formGroupName="formStep_1" *ngIf="step_1">
+      <div class="col-md-12"><h3>Basic Details1</h3></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Date of Birth</label>
+          <div class="input-group input-medium date">
+            <input type="text" class="form-control" ngbDatepicker #dob="ngbDatepicker" readonly [minDate]="minDate">
+            <span class="input-group-btn">
+              <button class="btn default" type="button" (click)="dob.toggle()">
+                  <i class="fa fa-calendar"></i>
+              </button>
+            </span>
+        </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Email Id</label>
+          <input type="text" class="form-control" formControlName="email" />
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary" [disabled]="!registrationForm.formStep_1.valid" (click)="showSteps(2)">Next</button>
+      </div>
+    </div>
+    <div class="first-section row" formGroupName="formStep_2" *ngIf="step_2">
+      <div class="col-md-12"><h3>Basic Details2</h3></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Name1</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Date of Birth</label>
+          <input type="text" class="form-control" formControlName="dob" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Email Id</label>
+          <input type="text" class="form-control" formControlName="email" />
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-default" (click)="showSteps(1)">Prev</button>
+        <button type="button" class="btn btn-primary" (click)="showSteps(3)">Next</button>
+      </div>
+    </div>
+    <div class="first-section row" formGroupName="formStep_3" *ngIf="step_3">
+      <div class="col-md-12"><h3>Basic Details3</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Name</label>
@@ -18,11 +74,38 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Email Id</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" formControlName="email" />
         </div>
       </div>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-default" (click)="showSteps(2)">Prev</button>
+        <button type="button" class="btn btn-primary" (click)="showSteps(4)">Next</button>
+      </div>
     </div>
-    <button type="button" class="btn btn-default">Prev</button>
-    <button type="button" class="btn btn-primary">Next</button>
+    <div class="first-section row" formGroupName="formStep_4" *ngIf="step_4">
+      <div class="col-md-12"><h3>Basic Details4</h3></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Date of Birth</label>
+          <input type="text" class="form-control" formControlName="dob" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Email Id</label>
+          <input type="text" class="form-control" formControlName="email" />
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-default" (click)="showSteps(3)">Prev</button>
+        <button type="submit" class="btn btn-primary">Finish</button>
+      </div>
+    </div>
   </form>
 </div>

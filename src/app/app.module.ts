@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -29,6 +30,7 @@ const appRoutes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
