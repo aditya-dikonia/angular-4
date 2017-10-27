@@ -2,7 +2,7 @@
 <div class="container">
   <form action="" [formGroup]="registrationForm" (ngSubmit)="addMember(registrationForm.value)">
     <div class="first-section row" formGroupName="formStep_1" *ngIf="step_1">
-      <div class="col-md-12"><h3>Basic Details1</h3></div>
+      <div class="col-md-12"><h3>Basic Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Name</label>
@@ -28,28 +28,183 @@
           <input type="text" class="form-control" formControlName="email" />
         </div>
       </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Gender</label>
+          <label class="form-check-inline">
+            <input type="radio" class="" [value]="1" formControlName="gender" />Male 
+          </label>
+          <label class="form-check-inline">
+            <input type="radio" class="" [value]="0" formControlName="gender" />Female
+          </label>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Create Profile For</label>
+          <select class="form-control" formControlName="profile">
+            <option  [value]="null" selected>Select Profile For</option>
+            <option  [value]="1">Self</option>
+            <option  [value]="2">Son</option>
+            <option  [value]="3">Daughter</option>
+            <option  [value]="4">Brother</option>
+            <option  [value]="5">Sister</option>
+            <option  [value]="6">Friend</option>
+            <option  [value]="7">Relative</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Religion</label>
+          <select class="form-control" formControlName="religion">
+            <option  [value]="null" selected>Select Religion</option>
+            <option  [value]="1">Muslim</option>
+            <option  [value]="2">Sikh</option>
+            <option  [value]="3">Parsi</option>
+            <option  [value]="4">Jain</option>
+            <option  [value]="5">Christian</option>
+            <option  [value]="6">Buddhist</option>
+            <option  [value]="7">Jewish</option>
+            <option  [value]="8">Spiritual</option>
+            <option  [value]="9">No Religion</option>
+            <option  [value]="10">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Mother Tongue</label>
+          <select class="form-control" formControlName="mothertongue">
+            <option  [value]="null" selected>Select Mother Tongue</option>
+            <option  [value]="1">English</option>
+            <option  [value]="2">Hindi</option>
+            <option  [value]="3">Punjabi</option>
+            <option  [value]="4">Bengali</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Your Community</label>
+          <input type="text" class="form-control" formControlName="community" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Mobile Number</label>
+          <span class="input-group-btn">+91</span>
+          <input type="text" class="form-control" formControlName="phone" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Your Marital Status</label>
+          <select class="form-control" formControlName="maritalstatus">
+            <option  [value]="null" selected>Select Marital Status</option>
+            <option  [value]="1">Never Married</option>
+            <option  [value]="2">Divorced</option>
+            <option  [value]="3">Widowed</option>
+            <option  [value]="4">Awaiting Divorce</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-12"><h4>You Live In </h4></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Select Country</label>
+          <select class="form-control" formControlName="country">
+            <option  [value]="null" selected>Select Country</option>
+            <option  [value]="1">India</option>
+            <option  [value]="2">USA</option>
+            <option  [value]="3">Canada</option>
+            <option  [value]="4">Japan</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Select State</label>
+          <select class="form-control" formControlName="state">
+            <option  [value]="null" selected>Select State</option>
+            <option  [value]="1">Punjab</option>
+            <option  [value]="2">Haryana</option>
+            <option  [value]="3">Himachal</option>
+            <option  [value]="4">California</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Select City</label>
+          <select class="form-control" formControlName="city">
+            <option  [value]="null" selected>Select City</option>
+            <option  [value]="1">Mohali</option>
+            <option  [value]="2">Chandigarh</option>
+            <option  [value]="3">Bathinda</option>
+            <option  [value]="4">Patiala</option>
+          </select>
+        </div>
+      </div>
       <div class="col-md-12">
-        <button type="button" class="btn btn-primary" [disabled]="!registrationForm.formStep_1.valid" (click)="showSteps(2)">Next</button>
+        <button type="button" class="btn btn-primary" (click)="showSteps(2)">Next</button>
       </div>
     </div>
     <div class="first-section row" formGroupName="formStep_2" *ngIf="step_2">
-      <div class="col-md-12"><h3>Basic Details2</h3></div>
+      <div class="col-md-12"><h3>Education Details </h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Name1</label>
-          <input type="text" class="form-control" formControlName="name" />
+          <label for="" class="col-form-label">Your Education Level</label>
+          <select class="form-control" formControlName="education_level">
+            <option  [value]="null" selected>Select  Education Level</option>
+            <option  [value]="1">Masters</option>
+            <option  [value]="2">Doctorate</option>
+            <option  [value]="3">Bachelors</option>
+          </select>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Date of Birth</label>
-          <input type="text" class="form-control" formControlName="dob" />
+          <label for="" class="col-form-label">Your Education Field</label>
+          <input type="text" class="form-control" formControlName="education_field" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Email Id</label>
-          <input type="text" class="form-control" formControlName="email" />
+          <label for="" class="col-form-label">Colleges You Attended</label>
+          <input type="text" class="form-control" formControlName="colleges_attended" />
+        </div>
+      </div>
+      <div class="col-md-12"><h4>Career Details </h4></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">You work With</label>
+          <select class="form-control" formControlName="work">
+            <option  [value]="null" selected>Select you work </option>
+            <option  [value]="1">Private Company</option>
+            <option  [value]="2">Government/Public Sector</option>
+            <option  [value]="3">Defence/Civil Services</option>
+            <option  [value]="4">Self Employed/Business</option>
+            <option  [value]="5">Not Working</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">As Designation</label>
+          <input type="text" class="form-control" formControlName="designation" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Your Employer Name</label>
+          <input type="text" class="form-control" formControlName="employer_name" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Your Annual Income</label>
+          <input type="text" class="form-control" formControlName="annual_income" />
         </div>
       </div>
       <div class="col-md-12">
@@ -58,23 +213,57 @@
       </div>
     </div>
     <div class="first-section row" formGroupName="formStep_3" *ngIf="step_3">
-      <div class="col-md-12"><h3>Basic Details3</h3></div>
+      <div class="col-md-12"><h3> Spiritual Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Name</label>
-          <input type="text" class="form-control" formControlName="name" />
+          <label for="" class="col-form-label">How many rounds do you chant? </label>
+          <input type="text" class="form-control" formControlName="chant" />
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Date of Birth</label>
-          <input type="text" class="form-control" formControlName="dob" />
+          <label for="" class="col-form-label">Have you undergone any marriage councelling? </label>
+          <input type="radio" class="" [value]="1" formControlName="councelling" />Yes 
+          <input type="radio" class="" [value]="0" formControlName="councelling" />No
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Email Id</label>
-          <input type="text" class="form-control" formControlName="email" />
+          <label for="" class="col-form-label">Are You Initiated ? </label>
+          <input type="radio" class="" [value]="1" formControlName="initiated" />Yes 
+          <input type="radio" class="" [value]="0" formControlName="initiated" />No
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Who is your initiating Spiritual Master? </label>
+          <input type="text" class="form-control" formControlName="spiritual_master" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Do you follow the regulative principles? </label>
+          <input type="radio" class="" [value]="1" formControlName="principles" />Yes 
+          <input type="radio" class="" [value]="0" formControlName="principles" />No
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Do you have an active service in the temple or devotee community? </label>
+          <input type="radio" class="" [value]="1" formControlName="active_service" />Yes 
+          <input type="radio" class="" [value]="0" formControlName="active_service" />No
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Which temple are you associated with? </label>
+          <input type="text" class="form-control" formControlName="temple_associated" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Who is your Menter/Leader/Counseller</label>
+          <input type="text" class="form-control" formControlName="leader" />
         </div>
       </div>
       <div class="col-md-12">
@@ -83,27 +272,250 @@
       </div>
     </div>
     <div class="first-section row" formGroupName="formStep_4" *ngIf="step_4">
-      <div class="col-md-12"><h3>Basic Details4</h3></div>
+      <div class="col-md-12"><h3> Personal Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Name</label>
-          <input type="text" class="form-control" formControlName="name" />
+          <label for="" class="col-form-label">Your Height</label>
+          <select class="form-control" formControlName="height">
+            <option  [value]="null" selected>Select Your Height</option>
+            <option [value]="2">4ft 5in - 134cm</option>
+            <option [value]="3">4ft 6in - 137cm</option>
+            <option [value]="4">4ft 7in - 139cm</option>
+            <option [value]="5">4ft 8in - 142cm</option>
+            <option [value]="6">4ft 9in - 144cm</option>
+            <option [value]="7">4ft 10in - 147cm</option>
+            <option [value]="8">4ft 11in - 149cm</option>
+            <option [value]="9">5ft - 152cm</option>
+            <option [value]="10">5ft 1in - 154cm</option>
+            <option [value]="11">5ft 2in - 157cm</option>
+            <option [value]="12">5ft 3in - 160cm</option>
+            <option [value]="13">5ft 4in - 162cm</option>
+            <option [value]="14">5ft 5in - 165cm</option>
+            <option [value]="15">5ft 6in - 167cm</option>
+            <option [value]="16">5ft 7in - 170cm</option>
+            <option [value]="17">5ft 8in - 172cm</option>
+            <option [value]="18">5ft 9in - 175cm</option>
+            <option [value]="19">5ft 10in - 177cm</option>
+            <option [value]="20">5ft 11in - 180cm</option>
+            <option [value]="21">6ft - 182cm</option>
+            <option [value]="22">6ft 1in - 185cm</option>
+            <option [value]="23">6ft 2in - 187cm</option>
+            <option [value]="24">6ft 3in - 190cm</option>
+            <option [value]="25">6ft 4in - 193cm</option>
+            <option [value]="26">6ft 5in - 195cm</option>
+            <option [value]="27">6ft 6in - 198cm</option>
+            <option [value]="28">6ft 7in - 200cm</option>
+            <option [value]="29">6ft 8in - 203cm</option>
+            <option [value]="30">6ft 9in - 205cm</option>
+            <option [value]="31">6ft 10in - 208cm</option>
+            <option [value]="32">6ft 11in - 210cm</option>
+            <option [value]="33">7ft - 213cm</option>
+          </select>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Date of Birth</label>
-          <input type="text" class="form-control" formControlName="dob" />
+          <label for="" class="col-form-label">Body Type</label>
+          <select class="form-control" formControlName="body_type">
+            <option  [value]="null" selected>Select Body Type </option>
+            <option  [value]="1">Slim</option>
+            <option  [value]="2">Atheletic</option>
+            <option  [value]="3">Average</option>
+            <option  [value]="4">Heavy</option>
+          </select>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
-          <label for="" class="col-form-label">Email Id</label>
-          <input type="text" class="form-control" formControlName="email" />
+          <label for="" class="col-form-label">Skin Tone</label>
+          <select class="form-control" formControlName="skin_type">
+            <option  [value]="null" selected>Select Skin Tone</option>
+            <option  [value]="1">Very Fair</option>
+            <option  [value]="2">Fair</option>
+            <option  [value]="3">Dark</option>
+            <option  [value]="4">Wheatish</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Your Mobile Number</label>
+          <!-- <p class="num-input"><span>+91</span> -->
+          <input type="text" class="form-control" formControlName="mobile_number" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">About Myself</label>
+          <textarea  formControlName="about" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Any Disability? </label>
+          <input type="radio" class="" [value]="1" formControlName="disability" />Yes 
+          <input type="radio" class="" [value]="0" formControlName="disability" />No
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Photo</label>
+          <input type="file" class="" formControlName="photo"/>
         </div>
       </div>
       <div class="col-md-12">
         <button type="button" class="btn btn-default" (click)="showSteps(3)">Prev</button>
+        <button type="button" class="btn btn-primary" (click)="showSteps(5)">Next</button>
+      </div>
+    </div>
+    <div class="first-section row" formGroupName="formStep_5" *ngIf="step_5">
+      <div class="col-md-12"><h3>Life Partner Details</h3></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Age</label>
+          <select class="form-control" formControlName="partner_age">
+            <option  [value]="null" selected>Select Age</option>
+            <option [value]="2">22</option>
+            <option [value]="3">23</option>
+            <option [value]="4">24</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Height</label>
+          <select class="form-control" formControlName="partner_height">
+            <option  [value]="null" selected>Select Height</option>
+            <option [value]="2">4ft 5in - 134cm</option>
+            <option [value]="3">4ft 6in - 137cm</option>
+            <option [value]="4">4ft 7in - 139cm</option>
+            <option [value]="5">4ft 8in - 142cm</option>
+            <option [value]="6">4ft 9in - 144cm</option>
+            <option [value]="7">4ft 10in - 147cm</option>
+            <option [value]="8">4ft 11in - 149cm</option>
+            <option [value]="9">5ft - 152cm</option>
+            <option [value]="10">5ft 1in - 154cm</option>
+            <option [value]="11">5ft 2in - 157cm</option>
+            <option [value]="12">5ft 3in - 160cm</option>
+            <option [value]="13">5ft 4in - 162cm</option>
+            <option [value]="14">5ft 5in - 165cm</option>
+            <option [value]="15">5ft 6in - 167cm</option>
+            <option [value]="16">5ft 7in - 170cm</option>
+            <option [value]="17">5ft 8in - 172cm</option>
+            <option [value]="18">5ft 9in - 175cm</option>
+            <option [value]="19">5ft 10in - 177cm</option>
+            <option [value]="20">5ft 11in - 180cm</option>
+            <option [value]="21">6ft - 182cm</option>
+            <option [value]="22">6ft 1in - 185cm</option>
+            <option [value]="23">6ft 2in - 187cm</option>
+            <option [value]="24">6ft 3in - 190cm</option>
+            <option [value]="25">6ft 4in - 193cm</option>
+            <option [value]="26">6ft 5in - 195cm</option>
+            <option [value]="27">6ft 6in - 198cm</option>
+            <option [value]="28">6ft 7in - 200cm</option>
+            <option [value]="29">6ft 8in - 203cm</option>
+            <option [value]="30">6ft 9in - 205cm</option>
+            <option [value]="31">6ft 10in - 208cm</option>
+            <option [value]="32">6ft 11in - 210cm</option>
+            <option [value]="33">7ft - 213cm</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Marital Status</label>
+          <select class="form-control" formControlName="partner_maritalstatus">
+            <option  [value]="null" selected>Select Marital Status</option>
+            <option  [value]="1">Never Married</option>
+            <option  [value]="2">Divorced</option>
+            <option  [value]="3">Widowed</option>
+            <option  [value]="4">Awaiting Divorce</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Mother Tongue</label>
+          <select class="form-control" formControlName="partner_mothertongue">
+            <option  [value]="null" selected>Select Mother Tongue</option>
+            <option  [value]="1">English</option>
+            <option  [value]="2">Hindi</option>
+            <option  [value]="3">Punjabi</option>
+            <option  [value]="4">Bengali</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Spiritual Master</label>
+          <input type="text" class="form-control" formControlName="partner_spiritual_master" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Spiritual Location</label>
+          <input type="text" class="form-control" formControlName="partner_spiritual_location" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Spiritual Status</label>
+          <input type="text" class="form-control" formControlName="partner_spiritual_status" />
+        </div>
+      </div>
+      <div class="col-md-12"><h4> Location Details</h4></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Country Living In</label>
+          <input type="text" class="form-control" formControlName="partner_country" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">State Living In</label>
+          <input type="text" class="form-control" formControlName="partner_state" />
+        </div>
+      </div>
+      <div class="col-md-12"><h4>Education & Profession Details </h4></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Education</label>
+          <input type="text" class="form-control" formControlName="partner_education" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Working With</label>
+          <input type="text" class="form-control" formControlName="partner_working_with" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Profession Area</label>
+          <input type="text" class="form-control" formControlName="partner_profession_area" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Annual Income</label>
+          <input type="text" class="form-control" formControlName="partner_annual_income" />
+        </div>
+      </div>
+      <div class="col-md-12"><h4>Other Details</h4></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Profile Created By</label>
+          <input type="text" class="form-control" formControlName="partner_profile_created" />
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="" class="col-form-label">Diet</label>
+          <input type="text" class="form-control" formControlName="partner_diet" />
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-default" (click)="showSteps(4)">Prev</button>
         <button type="submit" class="btn btn-primary">Finish</button>
       </div>
     </div>
