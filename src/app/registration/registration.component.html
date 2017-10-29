@@ -1,7 +1,7 @@
 <div class="clear-both"></div>
 <div class="container">
-  <form action="" [formGroup]="registrationForm" (ngSubmit)="addMember(registrationForm.value)">
-    <div class="first-section row" formGroupName="formStep_1" *ngIf="step_1">
+  <form action="" [formGroup]="basicForm" (ngSubmit)="addMember(2, basicForm.value)">
+    <div class="first-section row" *ngIf="step_1">
       <div class="col-md-12"><h3>Basic Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -147,10 +147,12 @@
         </div>
       </div>
       <div class="col-md-12">
-        <button type="button" class="btn btn-primary" (click)="showSteps(2)">Next</button>
+        <button type="submit" [disabled]="!basicForm.valid" class="btn btn-primary">Next</button>
       </div>
     </div>
-    <div class="first-section row" formGroupName="formStep_2" *ngIf="step_2">
+  </form>
+  <form action="" [formGroup]="educationForm" (ngSubmit)="addMember(3, educationForm.value)">
+    <div class="first-section row" *ngIf="step_2">
       <div class="col-md-12"><h3>Education Details </h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -209,10 +211,12 @@
       </div>
       <div class="col-md-12">
         <button type="button" class="btn btn-default" (click)="showSteps(1)">Prev</button>
-        <button type="button" class="btn btn-primary" (click)="showSteps(3)">Next</button>
+        <button type="submit" [disabled]="!educationForm.valid" class="btn btn-primary">Next</button>
       </div>
     </div>
-    <div class="first-section row" formGroupName="formStep_3" *ngIf="step_3">
+  </form>
+  <form action="" [formGroup]="spritualForm" (ngSubmit)="addMember(4, spritualForm.value)">
+    <div class="first-section row" *ngIf="step_3">
       <div class="col-md-12"><h3> Spiritual Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -268,10 +272,12 @@
       </div>
       <div class="col-md-12">
         <button type="button" class="btn btn-default" (click)="showSteps(2)">Prev</button>
-        <button type="button" class="btn btn-primary" (click)="showSteps(4)">Next</button>
+        <button type="submit" class="btn btn-primary">Next</button>
       </div>
     </div>
-    <div class="first-section row" formGroupName="formStep_4" *ngIf="step_4">
+  </form>
+  <form action="" [formGroup]="personalForm" (ngSubmit)="addMember(5, personalForm.value)">
+    <div class="first-section row" *ngIf="step_4">
       <div class="col-md-12"><h3> Personal Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -365,10 +371,12 @@
       </div>
       <div class="col-md-12">
         <button type="button" class="btn btn-default" (click)="showSteps(3)">Prev</button>
-        <button type="button" class="btn btn-primary" (click)="showSteps(5)">Next</button>
+        <button type="submit" class="btn btn-primary">Next</button>
       </div>
     </div>
-    <div class="first-section row" formGroupName="formStep_5" *ngIf="step_5">
+  </form>
+  <form action="" [formGroup]="partnerForm" (ngSubmit)="addMember(0, partnerForm.value)">
+    <div class="first-section row" *ngIf="step_5">
       <div class="col-md-12"><h3>Life Partner Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
