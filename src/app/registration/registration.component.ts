@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MastersService } from '../services/masters.service';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -18,7 +20,9 @@ export class RegistrationComponent implements OnInit {
   step_3 = false;
   step_4 = false;
   step_5 = false;
-  constructor(private fb:FormBuilder) { 
+
+  maritalStatus: MaritalStatus[];
+  constructor(private fb: FormBuilder, private master: MastersService) { 
     this.basicForm = this.fb.group({
       name: [null, Validators.required],
       email: [null, Validators.email],
@@ -84,6 +88,9 @@ export class RegistrationComponent implements OnInit {
   
 
   ngOnInit() {
+    this.master.getMaritalStatus().subscribe((maritalStatus) => {
+      this.maritalStatus = maritalStatus;
+    });
   }
 
   showSteps(step){
@@ -118,4 +125,8 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+}
+interface MaritalStatus {
+  id: number,
+  title: string
 }

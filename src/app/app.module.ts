@@ -12,6 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 
+import { MastersService } from './services/masters.service';
+
 const appRoutes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
@@ -33,7 +35,7 @@ const appRoutes = [
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [MastersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

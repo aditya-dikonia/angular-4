@@ -101,11 +101,7 @@
         <div class="form-group">
           <label for="" class="col-form-label">Your Marital Status</label>
           <select class="form-control" formControlName="maritalstatus">
-            <option  [value]="null" selected>Select Marital Status</option>
-            <option  [value]="1">Never Married</option>
-            <option  [value]="2">Divorced</option>
-            <option  [value]="3">Widowed</option>
-            <option  [value]="4">Awaiting Divorce</option>
+            <option  *ngFor="let status of maritalStatus" [value]="status.id" >{{ status.title }}</option>
           </select>
         </div>
       </div>
@@ -433,11 +429,7 @@
         <div class="form-group">
           <label for="" class="col-form-label">Marital Status</label>
           <select class="form-control" formControlName="partner_maritalstatus">
-            <option  [value]="null" selected>Select Marital Status</option>
-            <option  [value]="1">Never Married</option>
-            <option  [value]="2">Divorced</option>
-            <option  [value]="3">Widowed</option>
-            <option  [value]="4">Awaiting Divorce</option>
+            <option  *ngFor="let status of maritalStatus" [value]="status.id" >{{ status.title }}</option>
           </select>
         </div>
       </div>
