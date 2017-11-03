@@ -1,4 +1,10 @@
 <div class="clear-both"></div>
+<div class="banner-section2">
+      <div class="wrap">
+        <h2>Form</h2>
+      </div>
+    </div>
+<div class="form-sec-register">
 <div class="container">
   <form action="" [formGroup]="basicForm" (ngSubmit)="addMember(2, basicForm.value)">
     <div class="first-section row" *ngIf="step_1">
@@ -271,7 +277,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 new-btns style">
         <button type="button" class="btn btn-default" (click)="showSteps(1)">Prev</button>
         <button type="submit" [disabled]="!educationForm.valid" class="btn btn-primary">Next</button>
       </div>
@@ -372,7 +378,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 new-btns style">
         <button type="button" class="btn btn-default" (click)="showSteps(2)">Prev</button>
         <button type="submit" class="btn btn-primary" [disabled]="!spritualForm.valid">Next</button>
       </div>
@@ -467,7 +473,7 @@
           <input type="file" class="" formControlName="photo"/>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 new-btns style">
         <button type="button" class="btn btn-default" (click)="showSteps(3)">Prev</button>
         <button type="submit" class="btn btn-primary" [disabled]="!personalForm.valid">Next</button>
       </div>
