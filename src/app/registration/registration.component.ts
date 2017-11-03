@@ -21,79 +21,117 @@ export class RegistrationComponent implements OnInit {
   step_4 = false;
   step_5 = false;
 
-  maritalStatus: MaritalStatus[];
+  marital_status;
+  age;
+  mother_tongues;
+  religions;
+  education_level;
+  annual_income;
+  work_withs;
+  community;
+  skin_tone;
+  diet;
+  body_type;
+  create_for;
+  countrys;
+  heights;
+  Profession;
+  states;
+  cities;
+  selectedValue : {};
+  partnerState;
+  basic;
+  education;
+  spritual;
+  personal;
+  partner;
   constructor(private fb: FormBuilder, private master: MastersService) { 
     this.basicForm = this.fb.group({
       name: [null, Validators.required],
       email: [null, Validators.email],
       dob: [null],
-      gender: [null],
-      profile: [null],
-      religion: [null],
-      mothertongue: [null],
-      community: [null],
-      phone: [null],
+      gender: [null, Validators.required],
+      profile: [null, Validators.required],
+      religion: [null, Validators.required],
+      mothertongue: [null, Validators.required],
+      community: [null, Validators.required],
+      phone: [null, Validators.required],
       maritalstatus: [null],
-      country: [null],
-      state: [null],
-      city: [null]
+      country: [null, Validators.required],
+      state: [null, Validators.required],
+      city: [null, Validators.required]
     });
     this.educationForm = this.fb.group({
       education_level: [null, Validators.required],
-      education_field: [null],
-      colleges_attended: [null],
-      work: [null],
-      designation: [null],
-      employer_name: [null],
-      annual_income: [null]
+      education_field: [null, Validators.required],
+      colleges_attended: [null, Validators.required],
+      work: [null, Validators.required],
+      designation: [null, Validators.required],
+      employer_name: [null, Validators.required],
+      annual_income: [null, Validators.required]
     });
     this.spritualForm = this.fb.group({
-      chant: [null],
-      councelling: [null],
-      initiated: [null],
-      spiritual_master: [null],
-      principles: [null],
-      active_service: [null],
-      temple_associated: [null],
-      leader: [null]
+      chant: [null, Validators.required],
+      councelling: [null, Validators.required],
+      initiated: [null, Validators.required],
+      spiritual_master: [null, Validators.required],
+      principles: [null, Validators.required],
+      active_service: [null, Validators.required],
+      temple_associated: [null, Validators.required],
+      leader: [null, Validators.required]
     });
     this.personalForm = this.fb.group({
-      height: [null],
-      body_type: [null],
-      skin_type: [null],
-      mobile_number: [null],
-      about: [null],
-      disability: [null],
+      height: [null, Validators.required],
+      body_type: [null, Validators.required],
+      skin_type: [null, Validators.required],
+      age: [null, Validators.required],
+      about: [null, Validators.required],
+      disability: [null, Validators.required],
       photo: [null]
     });
     this.partnerForm = this.fb.group({
-      partner_age: [null],
-      partner_height: [null],
-      partner_maritalstatus: [null],
-      partner_mothertongue: [null],
-      partner_spiritual_master: [null],
-      partner_spiritual_location: [null],
-      partner_spiritual_status: [null],
-      partner_country: [null],
-      partner_state: [null],
-      partner_education: [null],
-      partner_working_with: [null],
-      partner_profession_area: [null],
-      partner_annual_income: [null],
-      partner_profile_created: [null],
-      partner_diet: [null]
+      partner_age_from: [null, Validators.required],
+      partner_age_to: [null, Validators.required],
+      partner_height_from: [null, Validators.required],
+      partner_height_to: [null, Validators.required],
+      partner_maritalstatus: [null, Validators.required],
+      partner_mothertongue: [null, Validators.required],
+      partner_spiritual_master: [null, Validators.required],
+      partner_spiritual_location: [null, Validators.required],
+      partner_spiritual_status: [null, Validators.required],
+      partner_country: [null, Validators.required],
+      partner_state: [null, Validators.required],
+      partner_education: [null, Validators.required],
+      partner_working_with: [null, Validators.required],
+      partner_profession_area: [null, Validators.required],
+      partner_annual_income_from: [null, Validators.required],
+      partner_annual_income_to: [null, Validators.required],
+      partner_profile_created: [null, Validators.required],
+      partner_diet: [null, Validators.required]
     });
   }
-
-  
 
   ngOnInit() {
-    this.master.getMaritalStatus().subscribe((maritalStatus) => {
-      this.maritalStatus = maritalStatus;
+    this.master.getMaritalStatus().subscribe((masters) => {
+      this.marital_status = masters.marital_status;
+      this.mother_tongues = masters.mother_tongues;
+      this.age = masters.age;
+      this.religions = masters.religions;
+      this.education_level = masters.education_level;
+      this.annual_income = masters.annual_income;
+      this.work_withs = masters.work_withs;
+      this.community = masters.community;
+      this.skin_tone = masters.skin_tone;
+      this.diet = masters.diet;
+      this.body_type = masters.body_type;
+      this.create_for = masters.create_for;
+      this.heights = masters.heights;
+      this.countrys = masters.countrys;
+      this.Profession = masters.Profession;
     });
   }
 
-  showSteps(step){
+  showSteps(step,formData){
     this.step_1 = false;
     this.step_2 = false;
     this.step_3 = false;
@@ -119,14 +157,50 @@ export class RegistrationComponent implements OnInit {
   }
   
   addMember(step, formData){
+    console.log(step);
     console.log(formData);
     if(step){
-      this.showSteps(step);
+      this.showSteps(step,formData);
+    }
+    if(step == 2){
+      localStorage.setItem('basicForm', JSON.stringify(formData));
+    }
+    else if(step == 3){
+      localStorage.setItem('educationForm', JSON.stringify(formData));
+    }
+    else if(step == 4){
+      localStorage.setItem('spritualForm', JSON.stringify(formData));
+    }
+    else if(step == 5){
+      localStorage.setItem('personalForm', JSON.stringify(formData));
+    }
+    else if(step == 0){
+      this.basic = localStorage.getItem('basicForm');
+      this.education = localStorage.getItem('educationForm');
+      this.spritual = localStorage.getItem('spritualForm');
+      this.personal = localStorage.getItem('personalForm');
+      console.log(this.basic);
+      console.log(this.education);
+      console.log(this.spritual);
+      console.log(this.personal);
+      
     }
   }
 
-}
-interface MaritalStatus {
-  id: number,
-  title: string
+  getState(country){
+    this.master.getState(country).subscribe((states) => {
+      this.states = states.states;
+    });
+  }
+  getCity(state){
+    this.master.getCity(this.selectedValue,state).subscribe((city) =>{
+      this.cities = city.cities;
+    });
+  }
+  getParterState(country){
+    this.master.getState(country).subscribe((partnerState) => {
+      this.partnerState = partnerState.states;
+    });
+  }
+
 }
