@@ -8,6 +8,7 @@
 <div class="container">
   <form action="" [formGroup]="basicForm" (ngSubmit)="addMember(2, basicForm.value)">
     <div class="first-section row" *ngIf="step_1">
+      <input type="hidden" formControlName="member_id" [(ngModel)]="member_id" />
       <div class="col-md-12"><h3>Basic Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -63,13 +64,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Create Profile For</label>
-          <select class="form-control" formControlName="profile">
+          <select class="form-control" formControlName="create_for">
             <option  [value]="null" selected>Select Profile For</option>
             <option *ngFor = "let status of create_for" [value]="status.id">{{ status.title }}</option>
           </select>
           <div
-            *ngIf="basicForm.get('profile').errors &&
-                  basicForm.get('profile').dirty">
+            *ngIf="basicForm.get('create_for').errors &&
+                  basicForm.get('create_for').dirty">
               This field is required
           </div>
         </div>
@@ -91,13 +92,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Mother Tongue</label>
-          <select class="form-control" formControlName="mothertongue">
+          <select class="form-control" formControlName="mother_tongue">
             <option  [value]="null" selected>Select Mother Tongue</option>
             <option *ngFor = "let status of mother_tongues" [value]="status" >{{ status }}</option>
           </select>
           <div
-            *ngIf="basicForm.get('mothertongue').errors &&
-                  basicForm.get('mothertongue').dirty">
+            *ngIf="basicForm.get('mother_tongue').errors &&
+                  basicForm.get('mother_tongue').dirty">
               This field is required
           </div>
         </div>
@@ -120,10 +121,10 @@
         <div class="form-group">
           <label for="" class="col-form-label">Mobile Number</label>
           <span class="input-group-btn">+91</span>
-          <input type="text" class="form-control" formControlName="phone" />
+          <input type="text" class="form-control" formControlName="mobile" />
           <div
-            *ngIf="basicForm.get('phone').errors &&
-                  basicForm.get('phone').dirty">
+            *ngIf="basicForm.get('mobile').errors &&
+                  basicForm.get('mobile').dirty">
               This field is required
           </div>
         </div>
@@ -131,13 +132,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Your Marital Status</label>
-          <select class="form-control" formControlName="maritalstatus">
+          <select class="form-control" formControlName="marital_status">
             <option  [value]="null" selected>Select Marital Status</option>
             <option *ngFor = "let status of marital_status" [value]="status.id" >{{ status.title }}</option>
           </select>
           <div
-            *ngIf="basicForm.get('maritalstatus').errors &&
-                  basicForm.get('maritalstatus').dirty">
+            *ngIf="basicForm.get('marital_status').errors &&
+                  basicForm.get('marital_status').dirty">
               This field is required
           </div>
         </div>
@@ -192,6 +193,7 @@
   </form>
   <form action="" [formGroup]="educationForm" (ngSubmit)="addMember(3, educationForm.value)">
     <div class="first-section row" *ngIf="step_2">
+        <input type="hidden" formControlName="member_id" [(ngModel)]="member_id" />
       <div class="col-md-12"><h3>Education Details </h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -221,10 +223,10 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Colleges You Attended</label>
-          <input type="text" class="form-control" formControlName="colleges_attended" />
+          <input type="text" class="form-control" formControlName="college_attanded" />
           <div
-            *ngIf="educationForm.get('colleges_attended').errors &&
-                  educationForm.get('colleges_attended').dirty">
+            *ngIf="educationForm.get('college_attanded').errors &&
+                  educationForm.get('college_attanded').dirty">
               This field is required
           </div>
         </div>
@@ -233,13 +235,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">You work With</label>
-          <select class="form-control" formControlName="work">
+          <select class="form-control" formControlName="working_with">
             <option  [value]="null" selected>Select you work </option>
             <option *ngFor = "let status of work_withs" [value]="status">{{ status }}</option>
           </select>
           <div
-            *ngIf="educationForm.get('work').errors &&
-                  educationForm.get('work').dirty">
+            *ngIf="educationForm.get('working_with').errors &&
+                  educationForm.get('working_with').dirty">
               This field is required
           </div>
         </div>
@@ -285,14 +287,15 @@
   </form>
   <form action="" [formGroup]="spritualForm" (ngSubmit)="addMember(4, spritualForm.value)">
     <div class="first-section row" *ngIf="step_3">
+        <input type="hidden" formControlName="member_id" [(ngModel)]="member_id" />
       <div class="col-md-12"><h3> Spiritual Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">How many rounds do you chant? </label>
-          <input type="text" class="form-control" formControlName="chant" />
+          <input type="text" class="form-control" formControlName="chant_rounds" />
           <div
-            *ngIf="spritualForm.get('chant').errors &&
-                  spritualForm.get('chant').dirty">
+            *ngIf="spritualForm.get('chant_rounds').errors &&
+                  spritualForm.get('chant_rounds').dirty">
               This field is required
           </div>
         </div>
@@ -300,12 +303,12 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Have you undergone any marriage councelling? </label>
-          <input type="radio" class="" [value]="1" formControlName="councelling" />Yes 
-          <input type="radio" class="" [value]="0" formControlName="councelling" />No
+          <input type="radio" class="" [value]="1" formControlName="undergone_marriage_counselling" />Yes 
+          <input type="radio" class="" [value]="0" formControlName="undergone_marriage_counselling" />No
         </div>
         <div
-          *ngIf="spritualForm.get('councelling').errors &&
-                spritualForm.get('councelling').dirty">
+          *ngIf="spritualForm.get('undergone_marriage_counselling').errors &&
+                spritualForm.get('undergone_marriage_counselling').dirty">
             This field is required
         </div>
       </div>
@@ -324,10 +327,10 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Who is your initiating Spiritual Master? </label>
-          <input type="text" class="form-control" formControlName="spiritual_master" />
+          <input type="text" class="form-control" formControlName="initiating_spiritual_master" />
           <div
-            *ngIf="spritualForm.get('spiritual_master').errors &&
-                  spritualForm.get('spiritual_master').dirty">
+            *ngIf="spritualForm.get('initiating_spiritual_master').errors &&
+                  spritualForm.get('initiating_spiritual_master').dirty">
               This field is required
           </div>
         </div>
@@ -335,12 +338,12 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Do you follow the regulative principles? </label>
-          <input type="radio" class="" [value]="1" formControlName="principles" />Yes 
-          <input type="radio" class="" [value]="0" formControlName="principles" />No
+          <input type="radio" class="" [value]="1" formControlName="regulative_principles" />Yes 
+          <input type="radio" class="" [value]="0" formControlName="regulative_principles" />No
         </div>
         <div
-          *ngIf="spritualForm.get('principles').errors &&
-                spritualForm.get('principles').dirty">
+          *ngIf="spritualForm.get('regulative_principles').errors &&
+                spritualForm.get('regulative_principles').dirty">
             This field is required
         </div>
       </div>
@@ -359,10 +362,10 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Which temple are you associated with? </label>
-          <input type="text" class="form-control" formControlName="temple_associated" />
+          <input type="text" class="form-control" formControlName="associated_temple" />
           <div
-            *ngIf="spritualForm.get('temple_associated').errors &&
-                  spritualForm.get('temple_associated').dirty">
+            *ngIf="spritualForm.get('associated_temple').errors &&
+                  spritualForm.get('associated_temple').dirty">
               This field is required
           </div>
         </div>
@@ -370,10 +373,10 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Who is your Menter/Leader/Counseller</label>
-          <input type="text" class="form-control" formControlName="leader" />
+          <input type="text" class="form-control" formControlName="menter" />
           <div
-            *ngIf="spritualForm.get('leader').errors &&
-                  spritualForm.get('leader').dirty">
+            *ngIf="spritualForm.get('menter').errors &&
+                  spritualForm.get('menter').dirty">
               This field is required
           </div>
         </div>
@@ -386,6 +389,7 @@
   </form>
   <form action="" [formGroup]="personalForm" (ngSubmit)="addMember(5, personalForm.value)">
     <div class="first-section row" *ngIf="step_4">
+        <input type="hidden" formControlName="member_id" [(ngModel)]="member_id" />
       <div class="col-md-12"><h3> Personal Details</h3></div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -432,13 +436,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Skin Tone</label>
-          <select class="form-control" formControlName="skin_type">
+          <select class="form-control" formControlName="skin_tone">
             <option  [value]="null" selected>Select Skin Tone</option>
             <option *ngFor = "let status of skin_tone" [value]="status.id">{{ status.title }}</option>
           </select>
           <div
-            *ngIf="personalForm.get('skin_type').errors &&
-                  personalForm.get('skin_type').dirty">
+            *ngIf="personalForm.get('skin_tone').errors &&
+                  personalForm.get('skin_tone').dirty">
               This field is required
           </div>
         </div>
@@ -481,6 +485,7 @@
   </form>
   <form action="" [formGroup]="partnerForm" (ngSubmit)="addMember(0, partnerForm.value)">
     <div class="first-section row" *ngIf="step_5">
+        <input type="hidden" formControlName="member_id" [(ngModel)]="member_id" />
       <div class="col-md-12"><h3>Life Partner Details</h3></div>
       <div class="col-lg-2 col-md-2 col-sm-2">
         <div class="form-group">
@@ -541,13 +546,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Marital Status</label>
-          <select class="form-control" formControlName="partner_maritalstatus">
+          <select class="form-control" formControlName="partner_marital_status">
             <option  [value]="null" selected>Select Marital Status</option>
             <option *ngFor = "let status of marital_status" [value]="status.id" >{{ status.title }}</option>
           </select>
           <div
-            *ngIf="partnerForm.get('partner_maritalstatus').errors &&
-                  partnerForm.get('partner_maritalstatus').dirty">
+            *ngIf="partnerForm.get('partner_marital_status').errors &&
+                  partnerForm.get('partner_marital_status').dirty">
               This field is required
           </div>
         </div>
@@ -555,13 +560,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Mother Tongue</label>
-          <select class="form-control" formControlName="partner_mothertongue">
+          <select class="form-control" formControlName="partner_mother_tongue">
             <option  [value]="null" selected>Select Mother Tongue</option>
             <option *ngFor = "let status of mother_tongues" [value]="status">{{ status }}</option>
           </select>
           <div
-            *ngIf="partnerForm.get('partner_mothertongue').errors &&
-                  partnerForm.get('partner_mothertongue').dirty">
+            *ngIf="partnerForm.get('partner_mother_tongue').errors &&
+                  partnerForm.get('partner_mother_tongue').dirty">
               This field is required
           </div>
         </div>
@@ -660,13 +665,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Profession Area</label>
-          <select class="form-control" formControlName="partner_profession_area">
+          <select class="form-control" formControlName="partner_professional_area">
             <option  [value]="null" selected>Select Profession Area</option>
             <option *ngFor = "let status of Profession" [value]="status" >{{ status }}</option>
           </select>
           <div
-            *ngIf="partnerForm.get('partner_profession_area').errors &&
-                  partnerForm.get('partner_profession_area').dirty">
+            *ngIf="partnerForm.get('partner_professional_area').errors &&
+                  partnerForm.get('partner_professional_area').dirty">
               This field is required
           </div>
         </div>
@@ -703,13 +708,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Profile Created By</label>
-          <select class="form-control" formControlName="partner_profile_created">
+          <select class="form-control" formControlName="partner_created_by">
             <option  [value]="null" selected>Select Profile Created By</option>
             <option *ngFor = "let status of create_for" [value]="status.id">{{ status.title }}</option>
           </select>
           <div
-            *ngIf="partnerForm.get('partner_profile_created').errors &&
-                  partnerForm.get('partner_profile_created').dirty">
+            *ngIf="partnerForm.get('partner_created_by').errors &&
+                  partnerForm.get('partner_created_by').dirty">
               This field is required
           </div>
         </div>
