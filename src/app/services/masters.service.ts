@@ -19,5 +19,9 @@ export class MastersService {
   	return this.http.get('http://103.54.100.36:4127/krishnaconsciousmatches/dev/api/get_city/'+cnt_code +'/'+state)
       .map(res => res.json());
   }
+  insertData(body){
+    return this.http.post('http://103.54.100.36:4127/krishnaconsciousmatches/dev/api/insert_member',body)
+      .map(res => res.json());
+  }
   
 }

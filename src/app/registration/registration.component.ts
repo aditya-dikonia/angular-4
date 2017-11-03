@@ -131,7 +131,7 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  showSteps(step,formData){
+  showSteps(step){
     this.step_1 = false;
     this.step_2 = false;
     this.step_3 = false;
@@ -157,10 +157,8 @@ export class RegistrationComponent implements OnInit {
   }
   
   addMember(step, formData){
-    console.log(step);
-    console.log(formData);
     if(step){
-      this.showSteps(step,formData);
+      this.showSteps(step);
     }
     if(step == 2){
       localStorage.setItem('basicForm', JSON.stringify(formData));
@@ -179,11 +177,10 @@ export class RegistrationComponent implements OnInit {
       this.education = localStorage.getItem('educationForm');
       this.spritual = localStorage.getItem('spritualForm');
       this.personal = localStorage.getItem('personalForm');
-      console.log(this.basic);
-      console.log(this.education);
-      console.log(this.spritual);
-      console.log(this.personal);
-      
+      var body = this.basic + this.education + this.spritual + this.personal + JSON.stringify(formData);
+      this.master.insertData(body).subscribe((allData) => {
+        console.log(allData);
+      });
     }
   }
 
