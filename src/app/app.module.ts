@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -35,7 +36,10 @@ const appRoutes = [
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MastersService],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    MastersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
