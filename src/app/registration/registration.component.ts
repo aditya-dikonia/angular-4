@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MastersService } from '../services/masters.service';
 
@@ -8,7 +8,8 @@ import { MastersService } from '../services/masters.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  minDate = {year: 2017, month: 1, day: 1};
+  @ViewChild('fileInput') fileInput;
+  minDate = {year: 1945, month: 1, day: 1};
   registrationForm: FormGroup;
   basicForm: FormGroup;
   educationForm: FormGroup;
@@ -46,6 +47,9 @@ export class RegistrationComponent implements OnInit {
   personal;
   partner;
   member_id: number;
+  Body;
+  profile_pic;
+  saveSuccess: boolean;
   constructor(private fb: FormBuilder, private master: MastersService) { 
     this.basicForm = this.fb.group({
       name: [null, Validators.required],
@@ -92,6 +96,7 @@ export class RegistrationComponent implements OnInit {
       about: [null, Validators.required],
       disability: [null, Validators.required],
       photo: [null],
+      profile_pic : [null],
       member_id: [0]
     });
     this.partnerForm = this.fb.group({
@@ -167,12 +172,41 @@ export class RegistrationComponent implements OnInit {
     formData.current_step = (step) ? (parseInt(step)-1) : 5;
     if(step){
       this.showSteps(step);
+    }else{
+      this.showSteps(1);
     }
     this.master.insertData(JSON.stringify(formData)).subscribe((allData) => {
       this.member_id = allData.id;
+      console.log(allData.error);
+      if(allData.error == 0){
+        this.partnerForm.reset();
+        this.personalForm.reset();
+        this.spritualForm.reset();
+        this.educationForm.reset();
+        this.basicForm.reset();
+        if (allData.message){
+            this.saveSuccess = true;
+        }
+        else{
+            this.saveSuccess = false;
+        }
+      }
     });
   }
 
+  upload() {
+    let fileBrowser = this.fileInput.nativeElement;
+    if (fileBrowser.files && fileBrowser.files[0]) {
+      var data = fileBrowser.files[0];
+      var dataname = data.name;
+      let body:FormData = new FormData();
+      body.append('uploadFile', data, dataname);
+      this.master.UploadPic(body).subscribe((image) => {
+        this.profile_pic = image.profile_pic;
+      });
+  
+    }
+  }
   getState(country){
     this.master.getState(country).subscribe((states) => {
       this.states = states.states;

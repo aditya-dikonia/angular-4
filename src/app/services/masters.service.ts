@@ -23,5 +23,9 @@ export class MastersService {
     return this.http.post('http://103.54.100.36:4127/krishnaconsciousmatches/dev/api/insert_member',body)
       .map(res => res.json());
   }
+  UploadPic(body){
+    return this.http.post('http://103.54.100.36:4127/krishnaconsciousmatches/dev/api/image_upload',body)
+      .map(res => res.json());
+  }
   
 }

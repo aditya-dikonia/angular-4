@@ -167,3 +167,4 @@ a:hover{text-decoration:none;}
 @media screen and (max-width:1300px){
 .banner-section {background-position: -210px center;}
 }
+.error_message{ color:#ff0000;}
