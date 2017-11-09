@@ -7,7 +7,7 @@
 <div class="form-sec-register">
 <div class="container">
 <div class="alert alert-success saveSuccess-message" *ngIf="saveSuccess">
-    <strong>Your Registration Details Submitted Successfully</strong>
+    <strong>Thanks! Your Registration Details Submitted Successfully.</strong>
 </div>
   <form action="" [formGroup]="basicForm" (ngSubmit)="addMember(2, basicForm.value)">
     <div class="first-section row" *ngIf="step_1">
@@ -25,7 +25,7 @@
         <div class="form-group">
           <label for="" class="col-form-label">Date of Birth</label>
           <div class="input-group input-medium date">
-            <input type="text" class="form-control" ngbDatepicker #dob="ngbDatepicker" formControlName ="dob" readonly [minDate]="minDate" [maxDate]="maxDate" >
+            <input type="text" class="form-control" ngbDatepicker #dob="ngbDatepicker" formControlName ="dob" readonly [minDate]="minDate" [maxDate]="maxDate">
             <span class="input-group-btn">
               <button class="btn default" type="button" (click)="dob.toggle()">
                   <i class="fa fa-calendar"></i>
@@ -110,12 +110,15 @@
         <div class="form-group">
           <label for="" class="col-form-label">Mobile Number</label>
           <span class="input-group-btn">+91</span>
-          <input type="text" class="form-control" formControlName="mobile" digits minlength="10" maxlength="10"/>
+          <input type="text" class="form-control" formControlName="mobile"  minlength="10" maxlength="10" pattern="[0-9]*"/>
           <span *ngIf="!basicForm.get('mobile').valid && basicForm.get('mobile').touched"
           class="help-block error_message"> This field is required</span>
         </div>
         <span class="help-block error_message" *ngIf="basicForm.controls['mobile'].hasError('minlength')">
             Your mobile number must be at least 10 characters long.
+        </span>
+        <span class="help-block error_message" *ngIf="basicForm.controls['mobile'].hasError('pattern')">
+            Mobile number should be only numbers.
         </span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -134,7 +137,7 @@
         <div class="form-group">
           <label for="" class="col-form-label">Select Country</label>
           <select class="form-control" [(ngModel)]="selectedValue" formControlName="country" (change) = "getState($event.target.value)" >
-            <option  [value]="null" selected>Select Country</option>
+            <option  [value]="undefined" selected>Select Country</option>
             <option *ngFor = "let status of countrys" [value]="status.id">{{ status.title }}</option>
           </select>
           <span *ngIf="!basicForm.get('country').valid && basicForm.get('country').touched"
@@ -231,9 +234,12 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Your Annual Income</label>
-          <input type="text" class="form-control" formControlName="annual_income" />
+          <input type="text" class="form-control" formControlName="annual_income" pattern="[0-9]*" />
           <span *ngIf="!educationForm.get('annual_income').valid && educationForm.get('annual_income').touched"
           class="help-block error_message"> This field is required</span>
+          <span class="help-block error_message" *ngIf="educationForm.controls['annual_income'].hasError('pattern')">
+            Annual Income should be only number.
+          </span>
         </div>
       </div>
       <div class="col-md-12 new-btns style">
@@ -548,18 +554,24 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Annual Income From</label>
-          <input type="text" class="form-control" formControlName="partner_annual_income_from" />
+          <input type="text" class="form-control" formControlName="partner_annual_income_from" pattern="[0-9]*" />
           <span *ngIf="!partnerForm.get('partner_annual_income_from').valid && partnerForm.get('partner_annual_income_from').touched"
           class="help-block error_message"> This field is required</span>
         </div>
+        <span class="help-block error_message" *ngIf="partnerForm.controls['partner_annual_income_from'].hasError('pattern')">
+          Annual Income should be only number.
+        </span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Annual Income To</label>
-          <input type="text" class="form-control" formControlName="partner_annual_income_to"/>
+          <input type="text" class="form-control" formControlName="partner_annual_income_to" pattern="[0-9]*" />
           <span *ngIf="!partnerForm.get('partner_annual_income_to').valid && partnerForm.get('partner_annual_income_to').touched"
           class="help-block error_message"> This field is required</span>
         </div>
+        <span class="help-block error_message" *ngIf="partnerForm.controls['partner_annual_income_to'].hasError('pattern')">
+          Annual Income should be only number.
+        </span>
       </div>
       <div class="col-md-12"><h4>Other Details</h4></div>
       <div class="col-lg-4 col-md-4 col-sm-4">

@@ -121,7 +121,8 @@ export class RegistrationComponent implements OnInit {
       partner_created_by: [null, Validators.required],
       partner_diet: [null, Validators.required],
       member_id: [0]
-    });
+    }); 
+
   }
 
   ngOnInit() {
