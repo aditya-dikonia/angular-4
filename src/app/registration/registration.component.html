@@ -6,8 +6,8 @@
     </div>
 <div class="form-sec-register">
 <div class="container">
-<div class="alert alert-success" *ngIf="saveSuccess">
-    <strong>Member added successfully!!</strong>
+<div class="alert alert-success saveSuccess-message" *ngIf="saveSuccess">
+    <strong>Your Registration Details Submitted Successfully</strong>
 </div>
   <form action="" [formGroup]="basicForm" (ngSubmit)="addMember(2, basicForm.value)">
     <div class="first-section row" *ngIf="step_1">
@@ -17,34 +17,35 @@
         <div class="form-group">
           <label for="" class="col-form-label">Name</label>
           <input type="text" class="form-control" formControlName="name" />
-          <div class="error_message"
-            *ngIf="basicForm.get('name').errors &&
-                  basicForm.get('name').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('name').valid && basicForm.get('name').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Date of Birth</label>
           <div class="input-group input-medium date">
-            <input type="text" class="form-control" ngbDatepicker #dob="ngbDatepicker" formControlName ="dob" readonly [minDate]="minDate">
+            <input type="text" class="form-control" ngbDatepicker #dob="ngbDatepicker" formControlName ="dob" readonly [minDate]="minDate" [maxDate]="maxDate" >
             <span class="input-group-btn">
               <button class="btn default" type="button" (click)="dob.toggle()">
                   <i class="fa fa-calendar"></i>
               </button>
             </span>
         </div>
+          <span *ngIf="!basicForm.get('dob').valid && basicForm.get('dob').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Email Id</label>
           <input type="text" class="form-control" formControlName="email" />
+          <span *ngIf="!basicForm.get('email').valid && basicForm.get('email').touched"
+          class="help-block error_message">This field is required </span>
           <div class="error_message"
             *ngIf="basicForm.get('email').errors &&
                   basicForm.get('email').dirty">
-              Please enter a valid email address
+              Please Enter a Valid Email Address.
           </div>
         </div>
       </div>
@@ -57,11 +58,8 @@
           <label class="form-check-inline">
             <input type="radio" class="" [value]="0" formControlName="gender" />Female
           </label>
-          <div class="error_message"
-            *ngIf="basicForm.get('gender').errors &&
-                  basicForm.get('gender').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('gender').valid && basicForm.get('gender').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -71,11 +69,8 @@
             <option  [value]="null" selected>Select Profile For</option>
             <option *ngFor = "let status of create_for" [value]="status.id">{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="basicForm.get('create_for').errors &&
-                  basicForm.get('create_for').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('create_for').valid && basicForm.get('create_for').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -85,11 +80,8 @@
             <option  [value]="null" selected>Select Religion</option>
             <option *ngFor = "let status of religions" [value]="status">{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="basicForm.get('religion').errors &&
-                  basicForm.get('religion').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('religion').valid && basicForm.get('religion').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -99,11 +91,8 @@
             <option  [value]="null" selected>Select Mother Tongue</option>
             <option *ngFor = "let status of mother_tongues" [value]="status" >{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="basicForm.get('mother_tongue').errors &&
-                  basicForm.get('mother_tongue').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('mother_tongue').valid && basicForm.get('mother_tongue').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -113,24 +102,21 @@
             <option  [value]="null" selected>Select Community</option>
             <option *ngFor = "let status of community" [value]="status" >{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="basicForm.get('community').errors &&
-                  basicForm.get('community').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('community').valid && basicForm.get('community').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Mobile Number</label>
           <span class="input-group-btn">+91</span>
-          <input type="text" class="form-control" formControlName="mobile" />
-          <div class="error_message"
-            *ngIf="basicForm.get('mobile').errors &&
-                  basicForm.get('mobile').dirty">
-              This field is required
-          </div>
+          <input type="text" class="form-control" formControlName="mobile" digits minlength="10" maxlength="10"/>
+          <span *ngIf="!basicForm.get('mobile').valid && basicForm.get('mobile').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
+        <span class="help-block error_message" *ngIf="basicForm.controls['mobile'].hasError('minlength')">
+            Your mobile number must be at least 10 characters long.
+        </span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -139,11 +125,8 @@
             <option  [value]="null" selected>Select Marital Status</option>
             <option *ngFor = "let status of marital_status" [value]="status.id" >{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="basicForm.get('marital_status').errors &&
-                  basicForm.get('marital_status').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('marital_status').valid && basicForm.get('marital_status').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12"><h4>You Live In </h4></div>
@@ -154,11 +137,8 @@
             <option  [value]="null" selected>Select Country</option>
             <option *ngFor = "let status of countrys" [value]="status.id">{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="basicForm.get('country').errors &&
-                  basicForm.get('country').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('country').valid && basicForm.get('country').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -168,11 +148,8 @@
             <option  [value]="null" selected>Select State</option>
             <option *ngFor = "let status of states" [value]="status.id">{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="basicForm.get('state').errors &&
-                  basicForm.get('state').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!basicForm.get('state').valid && basicForm.get('state').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -182,15 +159,12 @@
             <option  [value]="null" selected>Select City</option>
             <option *ngFor = "let status of cities" [value]="status.title">{{ status.title }}</option>
           </select>
-        </div>
-        <div class="error_message"
-            *ngIf="basicForm.get('city').errors &&
-                  basicForm.get('city').dirty">
-              This field is required
+          <span *ngIf="!basicForm.get('city').valid && basicForm.get('city').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12">
-        <button type="submit" [disabled]="!basicForm.valid" class="btn btn-primary" >Next</button>
+        <button type="submit" class="btn btn-primary" >Next</button>
       </div>
     </div>
   </form>
@@ -205,33 +179,25 @@
             <option  [value]="null" selected>Select  Education Level</option>
             <option *ngFor = "let status of education_level">{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="educationForm.get('education_level').errors &&
-                  educationForm.get('education_level').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!educationForm.get('education_level').valid && educationForm.get('education_level').touched"
+          class="help-block error_message"> This field is required</span>
+          
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Your Education Field</label>
           <input type="text" class="form-control" formControlName="education_field" />
-          <div class="error_message"
-            *ngIf="educationForm.get('education_field').errors &&
-                  educationForm.get('education_field').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!educationForm.get('education_field').valid && educationForm.get('education_field').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Colleges You Attended</label>
           <input type="text" class="form-control" formControlName="college_attanded" />
-          <div class="error_message"
-            *ngIf="educationForm.get('college_attanded').errors &&
-                  educationForm.get('college_attanded').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!educationForm.get('college_attanded').valid && educationForm.get('college_attanded').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12"><h4>Career Details </h4></div>
@@ -242,49 +208,37 @@
             <option  [value]="null" selected>Select you work </option>
             <option *ngFor = "let status of work_withs" [value]="status">{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="educationForm.get('working_with').errors &&
-                  educationForm.get('working_with').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!educationForm.get('working_with').valid && educationForm.get('working_with').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">As Designation</label>
           <input type="text" class="form-control" formControlName="designation" />
-          <div class="error_message"
-            *ngIf="educationForm.get('designation').errors &&
-                  educationForm.get('designation').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!educationForm.get('designation').valid && educationForm.get('designation').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Your Employer Name</label>
           <input type="text" class="form-control" formControlName="employer_name" />
-          <div class="error_message"
-            *ngIf="educationForm.get('employer_name').errors &&
-                  educationForm.get('employer_name').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!educationForm.get('employer_name').valid && educationForm.get('employer_name').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Your Annual Income</label>
           <input type="text" class="form-control" formControlName="annual_income" />
-          <div class="error_message"
-            *ngIf="educationForm.get('annual_income').errors &&
-                  educationForm.get('annual_income').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!educationForm.get('annual_income').valid && educationForm.get('annual_income').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12 new-btns style">
         <button type="button" class="btn btn-default" (click)="showSteps(1)">Prev</button>
-        <button type="submit" [disabled]="!educationForm.valid" class="btn btn-primary">Next</button>
+        <button type="submit" class="btn btn-primary">Next</button>
       </div>
     </div>
   </form>
@@ -296,11 +250,8 @@
         <div class="form-group">
           <label for="" class="col-form-label">How many rounds do you chant? </label>
           <input type="text" class="form-control" formControlName="chant_rounds" />
-          <div class="error_message"
-            *ngIf="spritualForm.get('chant_rounds').errors &&
-                  spritualForm.get('chant_rounds').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!spritualForm.get('chant_rounds').valid && spritualForm.get('chant_rounds').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -309,11 +260,8 @@
           <input type="radio" class="" [value]="1" formControlName="undergone_marriage_counselling" />Yes 
           <input type="radio" class="" [value]="0" formControlName="undergone_marriage_counselling" />No
         </div>
-        <div class="error_message"
-          *ngIf="spritualForm.get('undergone_marriage_counselling').errors &&
-                spritualForm.get('undergone_marriage_counselling').dirty">
-            This field is required
-        </div>
+        <span *ngIf="!spritualForm.get('undergone_marriage_counselling').valid && spritualForm.get('undergone_marriage_counselling').touched"
+          class="help-block error_message"> This field is required</span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -321,21 +269,15 @@
           <input type="radio" class="" [value]="1" formControlName="initiated" />Yes 
           <input type="radio" class="" [value]="0" formControlName="initiated" />No
         </div>
-        <div class="error_message"
-          *ngIf="spritualForm.get('initiated').errors &&
-                spritualForm.get('initiated').dirty">
-            This field is required
-        </div>
+        <span *ngIf="!spritualForm.get('initiated').valid && spritualForm.get('initiated').touched"
+          class="help-block error_message"> This field is required</span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Who is your initiating Spiritual Master? </label>
           <input type="text" class="form-control" formControlName="initiating_spiritual_master" />
-          <div class="error_message"
-            *ngIf="spritualForm.get('initiating_spiritual_master').errors &&
-                  spritualForm.get('initiating_spiritual_master').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!spritualForm.get('initiating_spiritual_master').valid && spritualForm.get('initiating_spiritual_master').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -344,11 +286,8 @@
           <input type="radio" class="" [value]="1" formControlName="regulative_principles" />Yes 
           <input type="radio" class="" [value]="0" formControlName="regulative_principles" />No
         </div>
-        <div class="error_message"
-          *ngIf="spritualForm.get('regulative_principles').errors &&
-                spritualForm.get('regulative_principles').dirty">
-            This field is required
-        </div>
+        <span *ngIf="!spritualForm.get('regulative_principles').valid && spritualForm.get('regulative_principles').touched"
+          class="help-block error_message"> This field is required</span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
@@ -356,37 +295,28 @@
           <input type="radio" class="" [value]="1" formControlName="active_service" />Yes 
           <input type="radio" class="" [value]="0" formControlName="active_service" />No
         </div>
-        <div class="error_message"
-          *ngIf="spritualForm.get('active_service').errors &&
-                spritualForm.get('active_service').dirty">
-            This field is required
-        </div>
+        <span *ngIf="!spritualForm.get('active_service').valid && spritualForm.get('active_service').touched"
+          class="help-block error_message"> This field is required</span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Which temple are you associated with? </label>
           <input type="text" class="form-control" formControlName="associated_temple" />
-          <div class="error_message"
-            *ngIf="spritualForm.get('associated_temple').errors &&
-                  spritualForm.get('associated_temple').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!spritualForm.get('associated_temple').valid && spritualForm.get('associated_temple').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Who is your Menter/Leader/Counseller</label>
           <input type="text" class="form-control" formControlName="menter" />
-          <div class="error_message"
-            *ngIf="spritualForm.get('menter').errors &&
-                  spritualForm.get('menter').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!spritualForm.get('menter').valid && spritualForm.get('menter').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12 new-btns style">
         <button type="button" class="btn btn-default" (click)="showSteps(2)">Prev</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!spritualForm.valid">Next</button>
+        <button type="submit" class="btn btn-primary">Next</button>
       </div>
     </div>
   </form>
@@ -402,25 +332,8 @@
             <option  [value]="null" selected>Select Your Height</option>
             <option *ngFor = "let status of heights" [value]="status.id">{{ status.feet }}ft {{ status.inches }}in - {{ status.centimeter }}cm</option>
           </select>
-          <div class="error_message"
-            *ngIf="personalForm.get('height').errors &&
-                  personalForm.get('height').dirty">
-              This field is required
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="form-group">
-          <label for="" class="col-form-label">Your Age</label>
-          <select class="form-control" formControlName="age">
-            <option  [value]="null" selected>Select Age</option>
-            <option *ngFor = "let status of age" [value]="status">{{ status }}</option>
-          </select>
-          <div class="error_message"
-            *ngIf="personalForm.get('age').errors &&
-                  personalForm.get('age').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!personalForm.get('height').valid && personalForm.get('height').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -430,11 +343,8 @@
             <option  [value]="null" selected>Select Body Type </option>
             <option *ngFor = "let status of body_type" [value]="status.id" >{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="personalForm.get('body_type').errors &&
-                  personalForm.get('body_type').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!personalForm.get('body_type').valid && personalForm.get('body_type').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -444,11 +354,8 @@
             <option  [value]="null" selected>Select Skin Tone</option>
             <option *ngFor = "let status of skin_tone" [value]="status.id">{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="personalForm.get('skin_tone').errors &&
-                  personalForm.get('skin_tone').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!personalForm.get('skin_tone').valid && personalForm.get('skin_tone').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
     
@@ -456,11 +363,8 @@
         <div class="form-group">
           <label for="" class="col-form-label">About Myself</label>
           <textarea  formControlName="about" class="form-control"></textarea>
-          <div class="error_message"
-            *ngIf="personalForm.get('about').errors &&
-                  personalForm.get('about').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!personalForm.get('about').valid && personalForm.get('about').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -469,21 +373,24 @@
           <input type="radio" class="" [value]="1" formControlName="disability" />Yes 
           <input type="radio" class="" [value]="0" formControlName="disability" />No
         </div>
-        <div class="error_message"
-            *ngIf="personalForm.get('disability').errors &&
-                  personalForm.get('disability').dirty">
-              This field is required
-          </div>
+        <span *ngIf="!personalForm.get('disability').valid && personalForm.get('disability').touched"
+          class="help-block error_message"> This field is required</span>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Photo</label>
           <input type="file" #fileInput placeholder="Upload file..." formControlName="photo" (change)="upload()"/>
+          <span *ngIf="!personalForm.get('profile_pic').valid && personalForm.get('profile_pic').touched"
+          class="help-block error_message"> This field is required</span>
+          <div class="error_message">
+              {{ errorMessage }}
+          </div>
+          
         </div>
       </div>
       <div class="col-md-12 new-btns style">
         <button type="button" class="btn btn-default" (click)="showSteps(3)">Prev</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!personalForm.valid">Next</button>
+        <button type="submit" class="btn btn-primary">Next</button>
       </div>
     </div>
   </form>
@@ -498,11 +405,8 @@
             <option  [value]="null" selected>Select Age</option>
             <option *ngFor = "let status of age" [value]="status">{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_age_from').errors &&
-                  partnerForm.get('partner_age_from').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_age_from').valid && partnerForm.get('partner_age_from').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2">
@@ -512,11 +416,8 @@
             <option  [value]="null" selected>Select Age</option>
             <option *ngFor = "let status of age" [value]="status">{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_age_to').errors &&
-                  partnerForm.get('partner_age_to').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_age_to').valid && partnerForm.get('partner_age_to').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2">
@@ -526,11 +427,8 @@
             <option  [value]="null" selected>Select Height</option>
             <option *ngFor = "let status of heights" [value]="status.id">{{ status.feet }}ft {{ status.inches }}in - {{ status.centimeter }}cm</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_height_from').errors &&
-                  partnerForm.get('partner_height_from').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_height_from').valid && partnerForm.get('partner_height_from').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2">
@@ -540,11 +438,8 @@
             <option  [value]="null" selected>Select Height</option>
             <option *ngFor = "let status of heights" [value]="status.id">{{ status.feet }}ft {{ status.inches }}in - {{ status.centimeter }}cm</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_height_to').errors &&
-                  partnerForm.get('partner_height_to').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_height_to').valid && partnerForm.get('partner_height_to').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -554,11 +449,8 @@
             <option  [value]="null" selected>Select Marital Status</option>
             <option *ngFor = "let status of marital_status" [value]="status.id" >{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_marital_status').errors &&
-                  partnerForm.get('partner_marital_status').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_marital_status').valid && partnerForm.get('partner_marital_status').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -568,44 +460,32 @@
             <option  [value]="null" selected>Select Mother Tongue</option>
             <option *ngFor = "let status of mother_tongues" [value]="status">{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_mother_tongue').errors &&
-                  partnerForm.get('partner_mother_tongue').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_mother_tongue').valid && partnerForm.get('partner_mother_tongue').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Spiritual Master</label>
           <input type="text" class="form-control" formControlName="partner_spiritual_master" />
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_spiritual_master').errors &&
-                  partnerForm.get('partner_spiritual_master').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_spiritual_master').valid && partnerForm.get('partner_spiritual_master').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Spiritual Location</label>
           <input type="text" class="form-control" formControlName="partner_spiritual_location" />
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_spiritual_location').errors &&
-                  partnerForm.get('partner_spiritual_location').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_spiritual_location').valid && partnerForm.get('partner_spiritual_location').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Spiritual Status</label>
           <input type="text" class="form-control" formControlName="partner_spiritual_status" />
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_spiritual_status').errors &&
-                  partnerForm.get('partner_spiritual_status').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_spiritual_status').valid && partnerForm.get('partner_spiritual_status').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12"><h4> Location Details</h4></div>
@@ -616,11 +496,8 @@
             <option  [value]="null" selected>Select Country</option>
             <option *ngFor = "let status of countrys" [value]="status.id">{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_country').errors &&
-                  partnerForm.get('partner_country').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_country').valid && partnerForm.get('partner_country').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -630,11 +507,8 @@
             <option  [value]="null" selected>Select State</option>
             <option *ngFor = "let status of partnerState" [value]="status.id">{{ status.title }}</option>
           </select> 
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_state').errors &&
-                  partnerForm.get('partner_state').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_state').valid && partnerForm.get('partner_state').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12"><h4>Education & Profession Details </h4></div>
@@ -645,11 +519,8 @@
             <option  [value]="null" selected>Select  Education </option>
             <option *ngFor = "let status of education_level">{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_education').errors &&
-                  partnerForm.get('partner_education').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_education').valid && partnerForm.get('partner_education').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -659,11 +530,8 @@
             <option  [value]="null" selected>Select Working With </option>
             <option *ngFor = "let status of work_withs">{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_working_with').errors &&
-                  partnerForm.get('partner_working_with').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_working_with').valid && partnerForm.get('partner_working_with').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -673,33 +541,24 @@
             <option  [value]="null" selected>Select Profession Area</option>
             <option *ngFor = "let status of Profession" [value]="status" >{{ status }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_professional_area').errors &&
-                  partnerForm.get('partner_professional_area').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_professional_area').valid && partnerForm.get('partner_professional_area').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Annual Income From</label>
           <input type="text" class="form-control" formControlName="partner_annual_income_from" />
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_annual_income_from').errors &&
-                  partnerForm.get('partner_annual_income_from').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_annual_income_from').valid && partnerForm.get('partner_annual_income_from').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="form-group">
           <label for="" class="col-form-label">Annual Income To</label>
-          <input type="text" class="form-control" formControlName="partner_annual_income_to" />
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_annual_income_to').errors &&
-                  partnerForm.get('partner_annual_income_to').dirty">
-              This field is required
-          </div>
+          <input type="text" class="form-control" formControlName="partner_annual_income_to"/>
+          <span *ngIf="!partnerForm.get('partner_annual_income_to').valid && partnerForm.get('partner_annual_income_to').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12"><h4>Other Details</h4></div>
@@ -710,11 +569,8 @@
             <option  [value]="null" selected>Select Profile Created By</option>
             <option *ngFor = "let status of create_for" [value]="status.id">{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_created_by').errors &&
-                  partnerForm.get('partner_created_by').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_created_by').valid && partnerForm.get('partner_created_by').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
@@ -724,16 +580,13 @@
             <option  [value]="null" selected>Select Diet</option>
             <option *ngFor = "let status of diet" [value]="status.id">{{ status.title }}</option>
           </select>
-          <div class="error_message"
-            *ngIf="partnerForm.get('partner_diet').errors &&
-                  partnerForm.get('partner_diet').dirty">
-              This field is required
-          </div>
+          <span *ngIf="!partnerForm.get('partner_diet').valid && partnerForm.get('partner_diet').touched"
+          class="help-block error_message"> This field is required</span>
         </div>
       </div>
       <div class="col-md-12">
         <button type="button" class="btn btn-default" (click)="showSteps(4)">Prev</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!partnerForm.valid" >Finish</button>
+        <button type="submit" class="btn btn-primary">Finish</button>
       </div>
     </div>
   </form>

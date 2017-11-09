@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators,FormControl } from '@angular/forms';
 import { MastersService } from '../services/masters.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { MastersService } from '../services/masters.service';
 export class RegistrationComponent implements OnInit {
   @ViewChild('fileInput') fileInput;
   minDate = {year: 1945, month: 1, day: 1};
+  maxDate = {year: 1999, month: 12, day: 1};
   registrationForm: FormGroup;
   basicForm: FormGroup;
   educationForm: FormGroup;
@@ -21,7 +22,6 @@ export class RegistrationComponent implements OnInit {
   step_3 = false;
   step_4 = false;
   step_5 = false;
-
   marital_status;
   age;
   mother_tongues;
@@ -50,18 +50,21 @@ export class RegistrationComponent implements OnInit {
   Body;
   profile_pic;
   saveSuccess: boolean;
+  errorMessage: string;
+  pictureName;
+  submit_form: boolean = false;
   constructor(private fb: FormBuilder, private master: MastersService) { 
     this.basicForm = this.fb.group({
       name: [null, Validators.required],
-      email: [null, Validators.email],
-      dob: [null],
+      email: [null,Validators.email],
+      dob: [null, Validators.required],
       gender: [null, Validators.required],
       create_for: [null, Validators.required],
       religion: [null, Validators.required],
       mother_tongue: [null, Validators.required],
       community: [null, Validators.required],
       mobile: [null, Validators.required],
-      marital_status: [null],
+      marital_status: [null, Validators.required],
       country: [null, Validators.required],
       state: [null, Validators.required],
       city: [null, Validators.required],
@@ -92,11 +95,10 @@ export class RegistrationComponent implements OnInit {
       height: [null, Validators.required],
       body_type: [null, Validators.required],
       skin_tone: [null, Validators.required],
-      age: [null, Validators.required],
       about: [null, Validators.required],
       disability: [null, Validators.required],
       photo: [null],
-      profile_pic : [null],
+      profile_pic : [null, Validators.required],
       member_id: [0]
     });
     this.partnerForm = this.fb.group({
@@ -169,28 +171,72 @@ export class RegistrationComponent implements OnInit {
   }
   
   addMember(step, formData){
-    formData.current_step = (step) ? (parseInt(step)-1) : 5;
-    if(step){
-      this.showSteps(step);
-    }else{
-      this.showSteps(1);
-    }
-    this.master.insertData(JSON.stringify(formData)).subscribe((allData) => {
-      this.member_id = allData.id;
-      console.log(allData.error);
-      if(allData.error == 0){
-        this.partnerForm.reset();
-        this.personalForm.reset();
-        this.spritualForm.reset();
-        this.educationForm.reset();
-        this.basicForm.reset();
-        if (allData.message){
-            this.saveSuccess = true;
-        }
-        else{
-            this.saveSuccess = false;
-        }
+    this.submit_form = false;
+    if(step == 2){
+      if(this.basicForm.valid){
+        this.submit_form = true;  
+      }else{
+        this.validateAllFormFields(this.basicForm);
       }
+    }
+    if(step == 3){
+      if (this.educationForm.valid){
+        this.submit_form = true;  
+      }else{
+        this.validateAllFormFields(this.educationForm);
+      }
+    }
+    if(step == 4){
+      if (this.spritualForm.valid){
+        this.submit_form = true;  
+      }else{
+        this.validateAllFormFields(this.spritualForm);
+      }
+    }
+    if(step == 5){
+      if (this.personalForm.valid){
+        this.submit_form = true;  
+      }else{
+        this.validateAllFormFields(this.personalForm);
+      }
+    }
+    if(step == 0){
+      if (this.partnerForm.valid){
+        this.submit_form = true;  
+      }else{
+        this.validateAllFormFields(this.partnerForm);
+      }
+    }
+    if(this.submit_form){
+      formData.current_step = (step) ? (parseInt(step)-1) : 5;
+      if(step){
+        this.showSteps(step);
+      }else{
+        this.showSteps(1);
+      }
+      this.master.insertData(JSON.stringify(formData)).subscribe((allData) => {
+        this.member_id = allData.id;
+        if(allData.error == 0){
+          this.partnerForm.reset();
+          this.personalForm.reset();
+          this.spritualForm.reset();
+          this.educationForm.reset();
+          this.basicForm.reset();
+          if (allData.message){
+              this.saveSuccess = true;
+          }
+          else{
+              this.saveSuccess = false;
+          }
+        }
+      });
+    }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      control.markAsTouched();
     });
   }
 
@@ -202,7 +248,12 @@ export class RegistrationComponent implements OnInit {
       let body:FormData = new FormData();
       body.append('uploadFile', data, dataname);
       this.master.UploadPic(body).subscribe((image) => {
-        this.profile_pic = image.profile_pic;
+        if(image.error == 1){
+          this.errorMessage = image.message;
+        }else{
+          this.profile_pic = image.profile_pic;
+          this.errorMessage = '';
+        }
       });
   
     }
